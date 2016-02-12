@@ -7,13 +7,6 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
-var analytics = require('./routes/analytics');
-
-var levelup = require('levelup');
-var db = levelup('./data/app_db');
-var strava = require('strava-v3');
-
-//custom
 
 var app = express();
 
@@ -31,7 +24,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
-app.use('/analytics', analytics);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
