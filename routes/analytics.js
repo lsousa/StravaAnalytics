@@ -1,10 +1,10 @@
 var express = require('express');
 var router = express.Router();
 
+
 /* GET analytics page. */
 router.get('/', function(req, res, next) {
     var _res = res;
-
     var activities = new Promise (
         function (resolve, reject) {
             strava.athlete.listActivities({per_page:1},function(err, res) {
@@ -23,6 +23,17 @@ router.get('/', function(req, res, next) {
         _res.send(error);
     });
 
+});
+
+router.get('/test', function(req, res, next) {
+    req.strava.athlete.get({},function(err,payload) {
+        if(!err) {
+            res.send(payload);
+        }
+        else {
+            res.send(err);
+        }
+    });
 });
 
 module.exports = router;
